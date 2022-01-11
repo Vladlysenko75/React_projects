@@ -1,49 +1,10 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
-class User extends Component {
-    constructor(props) {
-        super(props);
-
-    }
-
-    componentWillMount() {
-
-    }
-
-    componentDidMount() {
-
-    }
-
-    componentWillReceiveProps(nextProps) {
-
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-
-    }
-
-    componentWillUpdate(nextProps, nextState) {
-
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-
-    }
-
-    componentWillUnmount() {
-
-    }
-
-    render() {
-        return (
-            <div>
-
-            </div>
-        );
-    }
-}
-
-User.propTypes = {};
-
-export default User;
+export const User = (props) => {
+    let {id,name,username} = props;
+    return (
+        <div>
+            {id}-{name}-{username}
+        </div>
+    );
+};
