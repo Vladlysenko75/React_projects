@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
-import './Launches.css';
+import './Launch';
+import {Launch} from "./Launch";
 
 export const Launches = () => {
 
@@ -18,20 +19,10 @@ export const Launches = () => {
     return (
         <div>
             <div className="launches">
-                    {
-                        rockets.map(value => <div key={value.flight_number} className={'rocket'}>
-                            <div className="info">
-                                <h2>
-                                    {value.mission_name}
-                                </h2>
-                                <p>
-                                    {value.launch_year}
-                                </p>
-                            </div>
-
-                            <img src={value.links.mission_patch} alt="patch"/>
-                        </div>)
-                    }
+                {
+                    rockets.map(value => <Launch key={value.flight_number} name={value.mission_name}
+                                                 year={value.launch_year} patch={value.links.mission_patch}/>)
+                }
             </div>
         </div>
     );

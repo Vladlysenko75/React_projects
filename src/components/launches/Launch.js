@@ -1,10 +1,19 @@
 import React from 'react';
 
-export const Launch = () => {
+import './Launches.css';
 
+export const Launch = (props) => {
+    let {name, year, patch} = props;
     return (
-        <div>
-
-        </div>
-    );
+        <div className={'rocket'}>
+            <div className="info">
+                <h2>
+                    {name}
+                </h2>
+                <p>
+                    {year}
+                </p>
+            </div>
+            <img src={patch} alt="patch"/>
+        </div>)
 };
