@@ -1,29 +1,38 @@
 import React, {useEffect, useState} from 'react';
 
-export default function Launches() {
-    const {rockets, setRockets} = useState([])
+import './Launches.css';
+
+export const Launches = () => {
+
+    const [rockets, setRockets] = useState([])
 
     useEffect(() => {
         fetch('https://api.spacexdata.com/v3/launches/')
             .then(value => value.json())
-            .then(rocket => setRockets(rocket))
-    },[] )
+            .then(rocket => {
+                // console.log(rocket)
+                setRockets(rocket.filter(rocket => rocket.launch_year !== '2020'))
+            })
+    }, [])
 
     return (
         <div>
-            <div className="rocket">
-                <div className="info">
+            <div className="launches">
                     {
-                        rockets.map(value => <h2 key={value.id}>
+                        rockets.map(value => <div key={value.flight_number} className={'rocket'}>
+                            <div className="info">
+                                <h2>
+                                    {value.mission_name}
+                                </h2>
+                                <p>
+                                    {value.launch_year}
+                                </p>
+                            </div>
 
-                        </h2>)
+                            <img src={value.links.mission_patch} alt="patch"/>
+                        </div>)
                     }
-                    <p>
-                    </p>
-                </div>
-                <div className="patch">
-                </div>
             </div>
         </div>
     );
-}
+};
