@@ -1,0 +1,19 @@
+.userPosts {
+    display: flex;
+}
+
+.usersy {
+    width: 50%;
+    background: greenyellow;
+    text-align: center;
+}
+
+.posts {
+    width: 50%;
+    background: #d263ff;
+}
+
+.comments {
+    width: 100%;
+    background: #63ffed;
+}
