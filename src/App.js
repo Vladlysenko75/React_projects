@@ -6,9 +6,14 @@ import {Posts} from "./components/Posts";
 
 export default function App() {
     const [userId, setUseId] = useState(null);
+    const [postId, setPostId] = useState(null)
 
     const foo = (id) => {
         setUseId(id)
+    }
+
+    const bar = (id) => {
+        setPostId(id)
     }
 
     return (
@@ -20,12 +25,12 @@ export default function App() {
                 </div>
                 <div className="posts">
                     {
-                        userId && <UserFull userId={userId}/>
+                        <UserFull userId={userId} bar={bar}/>
                     }
                 </div>
             </div>
             <div className="comments">
-                <Posts />
+                <Posts postId={postId}/>
             </div>
         </div>
     );
