@@ -1,16 +1,25 @@
-import './App.css';
+import {useState} from "react";
 
+import './App.css';
 import {Inputs} from "./Components/Inputs";
 import {Users} from "./Components/Users";
 
 function App() {
+
+    const [keyWord,setKeyWord] = useState({name:'',userName:'',email:''})
+    console.log(keyWord)
+
+    const pushKeyWord = (word) => {
+        setKeyWord(word)
+    }
+
   return (
     <div className="App">
       <div className="inputs">
-        <Inputs/>
+        <Inputs pushKeyWord={pushKeyWord} />
       </div>
       <div className="users">
-        <Users/>
+        <Users keyWord={keyWord}/>
       </div>
     </div>
   );
