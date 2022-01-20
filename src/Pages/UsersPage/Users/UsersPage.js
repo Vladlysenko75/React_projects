@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Outlet} from 'react-router-dom';
 
-import {jsonActionService} from "../../services/jsonAction.service";
+import {jsonActionService} from "../../../services/jsonAction.service";
 import {User} from "./User";
-import './Users.css'
+import './Users.css';
+import '../Albums/Album.css'
+import '../Photos/Photos.css'
 
 export const UsersPage = () => {
     const [users, setUsers] = useState([]);
-    console.log(users)
 
     useEffect(() => {
         jsonActionService.getAllUsers().then(value => setUsers(value))
