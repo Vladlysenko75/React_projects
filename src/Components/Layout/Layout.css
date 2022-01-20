@@ -1,0 +1,19 @@
+.header {
+    background-color: mediumpurple;
+    min-height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.header a {
+    font-size: 40px;
+    color: lightgoldenrodyellow;
+    text-decoration: none;
+}
+
+.header a[class='active'] {
+    background-color: rgba(165, 42, 42, 0.5);
+    border-radius: 12px;
+}
