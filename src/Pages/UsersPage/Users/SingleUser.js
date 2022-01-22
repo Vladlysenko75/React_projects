@@ -4,10 +4,9 @@ import {useLocation, useParams, Link, Outlet} from "react-router-dom";
 import {jsonActionService} from "../../../services/jsonAction.service";
 
 export const SingleUser = () => {
-    const params = useParams();
+    const {id} = useParams();
     const [user, setUser] = useState({})
     const {state} = useLocation();
-    console.log(params)
 
     useEffect(() => {
         if (state) {
@@ -15,8 +14,8 @@ export const SingleUser = () => {
             return
         }
 
-        jsonActionService.getUserById(params.id).then(value => setUser(value));
-    }, [params.id, state])
+        jsonActionService.getUserById(id).then(value => setUser(value));
+    }, [id, state])
 
     return (
         <div>

@@ -5,11 +5,11 @@ import {Photos} from "../Photos/Photos";
 
 export const AlbumPhotos = () => {
     const [photos, setPhotos] = useState([])
-    const params = useParams();
+    const {id} = useParams();
 
     useEffect( () => {
-        jsonActionService.getAlbumsPhotos(params.albumId).then(value => setPhotos(value))
-    },[params.albumId])
+        jsonActionService.getAlbumsPhotos(id).then(value => setPhotos(value))
+    },[id])
 
     return (
         <div>

@@ -6,11 +6,11 @@ import {Album} from "./Album";
 
 export const UsersAlbums = () => {
     const [albums,setAlbums] = useState([]);
-    const params = useParams();
+    const {id} = useParams();
 
     useEffect( () => {
-        jsonActionService.getUserAlbums(params.id).then( value => setAlbums(value));
-    },[params.id])
+        jsonActionService.getUserAlbums(id).then( value => setAlbums(value));
+    },[id])
 
     return (
         <div>

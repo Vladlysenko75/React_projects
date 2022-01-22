@@ -4,13 +4,9 @@ import {useLocation, useParams, Link, Outlet} from "react-router-dom";
 import {jsonActionService} from "../../../services/jsonAction.service";
 
 export const SinglePost = () => {
-    const params = useParams();
+    const {id} = useParams();
     const [post,setPost] = useState({});
     const {state} = useLocation();
-
-    console.log(params)
-
-
 
     useEffect( () => {
         if (state) {
@@ -18,8 +14,8 @@ export const SinglePost = () => {
             return
         }
 
-        jsonActionService.getPostById(params.id).then(value => setPost(value))
-    },[state, params.id])
+        jsonActionService.getPostById(id).then(value => setPost(value))
+    },[state, id])
 
     return (
         <div>

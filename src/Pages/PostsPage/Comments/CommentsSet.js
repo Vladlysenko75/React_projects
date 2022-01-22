@@ -7,13 +7,11 @@ import {Comments} from "./Comments";
 
 export const CommentsSet = () => {
     const [comments, setComments] = useState([])
-    const params = useParams();
-    console.log(comments)
-
+    const {id} = useParams();
 
     useEffect(() => {
-        jsonActionService.getCommentsById(params.id).then(value => setComments(value))
-    },[params.id])
+        jsonActionService.getCommentsById(id).then(value => setComments(value))
+    },[id])
     return (
         <div>
             <h2>Comments:</h2>

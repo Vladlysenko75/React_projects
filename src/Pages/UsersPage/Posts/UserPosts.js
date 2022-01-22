@@ -6,12 +6,11 @@ import {UserPost} from "./UserPost";
 
 export const UserPosts = () => {
     const [posts, setPosts] = useState([])
-    const params = useParams()
-    console.log(params)
+    const {id} = useParams()
 
     useEffect( () => {
-        jsonActionService.getPostsByUserId(params.id).then(value => setPosts(value))
-    },[params.id])
+        jsonActionService.getPostsByUserId(id).then(value => setPosts(value))
+    },[id])
 
     return (
         <div>
