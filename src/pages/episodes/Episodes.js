@@ -6,7 +6,7 @@ export const Episodes = () => {
     let [episodes, setEpisodes] = useState([])
 
     useEffect( () => {
-        console.log(episodeService.episodesPage);
+        console.log(episodeService.episodesPage(1));
     },[])
 
     return (
