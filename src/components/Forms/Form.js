@@ -29,7 +29,7 @@ export const Form = () => {
     }
     return (
         <div>
-            <form onSubmit={handleSubmit(submitNewCar)}>
+            <form>
                 <h2>Add car:</h2>
                 <label>Model: <input type="text" defaultValue={''} {...register('model')}/></label>
                 {formError.model && <span>{formError.model[0]}</span>}
@@ -37,21 +37,11 @@ export const Form = () => {
                 {formError.price && <span>{formError.price[0]}</span>}
                 <label>Year: <input type="number" defaultValue={''} {...register('year')}/></label>
                 {formError.year && <span>{formError.year[0]}</span>}
-                <button>Save</button>
-            </form>
-            <form onSubmit={(handleSubmit(deleteCarByID))}>
-                <h2>Delete Car By ID:</h2>
                 <label>Car ID:<input type="number"  {...register('carID')}/></label>
-                <button>Delete</button>
                 {formError.detail && <span>{formError.detail}</span>}
-            </form>
-            <form onSubmit={handleSubmit(updateCarInfo)}>
-                <h2>Update Car Details:</h2>
-                <label>Car ID: <input type="text" defaultValue={''} {...register('carID')}/></label>
-                <label>Model: <input type="text" defaultValue={''} {...register('model')}/></label>
-                <label>Price: <input type="number" defaultValue={''} {...register('price')}/></label>
-                <label>Year: <input type="number" defaultValue={''} {...register('year')}/></label>
-                <button>Update</button>
+                <button onClick={handleSubmit(submitNewCar)}>Save Car</button>
+                <button onClick={handleSubmit(deleteCarByID)}>Delete Car</button>
+                <button onClick={handleSubmit(updateCarInfo)}>Update Car</button>
             </form>
         </div>
     );
