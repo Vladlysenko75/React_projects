@@ -2,22 +2,20 @@ import React, {useEffect, useState} from 'react';
 
 import {episodeService} from "../../services/episode.service";
 import {useParams} from "react-router-dom";
+import {Episode} from "./Episode";
 
 export const Episodes = () => {
     const [episodes, setEpisodes] = useState([])
-    let params = useParams();
-    console.log(params)
+    let {pageNumber} = useParams();
+    console.log(pageNumber)
 
     useEffect( () => {
-        episodeService.episodesPage(1).then(value => setEpisodes(value))
-    },[])
+        episodeService.episodesPage(pageNumber).then(value => setEpisodes(value.results))
+    },[pageNumber])
     console.log(episodes)
     return (
         <div>
-            fdgfdf
-            <div>
-                rabotai
-            </div>
+            {episodes.map(oneEpisode => <Episode key={oneEpisode.id} oneEpisode={oneEpisode}/>)}
         </div>
     );
 };
