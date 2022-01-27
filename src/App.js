@@ -1,6 +1,8 @@
-import {useReducer} from "react";
+import {useReducer, useState} from "react";
 
 import './App.css';
+import {useForm} from "react-hook-form";
+
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -19,14 +21,15 @@ const reducer = (state, action) => {
 
 function App() {
     const [state, dispatch] = useReducer(reducer, {count1: 0, cats: [], dogs: []});
-
+    const {register, handleSubmit} = useForm();
+    console.log(handleSubmit)
     return (
         <div className="App">
             <div className="inputs">
                 <form>
-                    <label>Cats: <input type="text"/></label>
-                    <button onClick={() => dispatch({type: 'cat', payload: })}>Send Cats</button>
-                    <label>Dogs: <input type="text"/></label>
+                    <label>Cats: <input {...register('catsInput')} type="text"/></label>
+                    <button onClick={() => dispatch({type: 'cat', payload: {}})}>Send Cats</button>
+                    <label>Dogs: <input {...register('dogsInput')} type="text"/></label>
                     <button>Send Dogs</button>
                 </form>
 
