@@ -7,25 +7,20 @@ import {Episode} from "./Episode";
 import './Episodes.css'
 
 export const Episodes = () => {
-    const [episodes, setEpisodes] = useState([])
-    let [currentPage, setPage] = useState(2)
     let {pageNumber} = useParams();
+    const [episodes, setEpisodes] = useState([])
 
-    console.log('page number', pageNumber)
-    const counterPlus = (page) => {
-        setPage(page + 1)
-        if (page >= 3) {
-            setPage(1)
+    function getPage(current, i) {
+        let next = +current + i;
+        if (next > 3) {
+            return 1
         }
+        if (next < 1) {
+            return 3
+        }
+        return next
     }
 
-    const counterMinus = (page) => {
-        setPage(page - 1)
-        if (page <= 1) {
-            setPage(3)
-        }
-    }
-    console.log(currentPage)
     useEffect(() => {
         episodeService.episodesPage(pageNumber).then(value => setEpisodes(value.results))
     }, [pageNumber])
@@ -41,11 +36,11 @@ export const Episodes = () => {
                 {episodes.map(oneEpisode => <Episode key={oneEpisode.id} oneEpisode={oneEpisode}/>)}
             </div>
             <div className="navigation">
-                <button onClick={() => counterPlus(currentPage)}>
-                    <Link to={`/page/${currentPage.toString()}`}>Forward</Link>
+                <button>
+                    <Link to={`/page/${getPage(pageNumber, 1).toString()}`}>Forward</Link>
                 </button>
-                <button onClick={() => counterMinus(pageNumber)}>
-                    <Link to={`/page/${currentPage.toString()}`}>Backward</Link>
+                <button>
+                    <Link to={`/page/${getPage(pageNumber, -1).toString()}`}>Backward</Link>
                 </button>
             </div>
         </div>

@@ -1,37 +1,34 @@
 import React, {useEffect, useState} from 'react';
-import {useLocation} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
+
 import {EpisodeHeroes} from "./EpisodeHeroes";
 import {episodeService} from "../../services/episode.service";
 
 export const EpisodeInfo = () => {
     const {state} = useLocation()
-    const [charactersInfo, setCharactersInfo] = useState([])
-    const {name, episode, air_date} = state;
-    console.log(state)
+    const {id} = useParams()
+    const [episodeState, setEpisodeState] = useState(state)
 
-    let arr = []
-    const characters = state.characters;
-    characters.map(one => arr.push(one.slice(42)))
-    let charactersList = arr.join()
-    console.log(charactersList)
+    const [charactersInfo, setCharactersInfo] = useState([])
 
     useEffect(() => {
-        if (state) {
-            episodeService.episodeCharacters(charactersList).then(value => setCharactersInfo(value))
-            return
+        if (!episodeState) {
+            return episodeService.episode(id).then(episode => setEpisodeState(episode)).catch(() => setEpisodeState({name: 'Episode Not Found'}))
         }
-        console.log('fff')
-    }, [charactersList, state])
+        const characters = episodeState.characters;
+        if (characters) {
+            let ids = characters.map(one => one.slice(42)).join()
+            episodeService.episodeCharacters(ids).then(value => setCharactersInfo(value))
+        }
+    }, [episodeState, id])
 
-
-    console.log('here', charactersInfo);
-    return (
+    return episodeState && (
         <>
             <div className="episodesInfo">
                 <div className="currentEpisode">
-                    <div><h1>{name}</h1></div>
-                    <div>Episode: {episode}</div>
-                    <div>Air date: {air_date}</div>
+                    <div><h1>{episodeState.name}</h1></div>
+                    <div>Episode: {episodeState.episode}</div>
+                    <div>Air date: {episodeState.air_date}</div>
                 </div>
             </div>
             <div className="characters">
