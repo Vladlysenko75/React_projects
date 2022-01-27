@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {imgRequest} from "../services/axios.service";
+import {imgRequest} from "../services/imgService";
+
 
 export const ImgRequest = () => {
     const [imgStorage, setImgStorage] = useState('');
     console.log(imgStorage)
     useEffect( () => {
-        imgRequest.cat.then(cat => setImgStorage(cat))
     },[])
 
     return (

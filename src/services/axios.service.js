@@ -1,8 +1,7 @@
 import axios from "axios";
-import baseURL, {urls} from "../configs/urls";
 
-const randomImgRequest = axios.create(baseURL);
+import baseURL from "../configs/urls";
 
-export const imgRequest = {
-    cat: randomImgRequest.get(urls.cat).then(cat => cat.data)
-}
+const randomImgRequest = axios.create({baseURL});
+
+export {randomImgRequest};
