@@ -12,7 +12,6 @@ const reducer = (state, action) => {
         default:
             throw new Error('Error')
     }
-    return state
 }
 
 function App() {
