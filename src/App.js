@@ -1,8 +1,6 @@
 import {useReducer, useState} from "react";
 
 import './App.css';
-import {useForm} from "react-hook-form";
-
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -12,32 +10,35 @@ const reducer = (state, action) => {
             return {count1: state.count1 - 1}
         case 'reset':
             return {count1: 0}
-        case 'cat': console.log(state)
-            return
+        case 'cat':
+            return {...state, cats: [...state.cats, action.payload]}
         default:
             throw new Error('Error')
     }
 }
 
 function App() {
-    const [state, dispatch] = useReducer(reducer, {count1: 0, cats: [], dogs: []});
-    const {register, handleSubmit} = useForm();
-    console.log(handleSubmit)
+    const [state, dispatch] = useReducer(reducer, {cats: [], dogs: []});
+    const [catName, setCatName] = useState('');
+
     return (
         <div className="App">
             <div className="inputs">
-                <form>
-                    <label>Cats: <input {...register('catsInput')} type="text"/></label>
-                    <button onClick={() => dispatch({type: 'cat', payload: {}})}>Send Cats</button>
-                    <label>Dogs: <input {...register('dogsInput')} type="text"/></label>
-                    <button>Send Dogs</button>
-                </form>
+                <div>
+                    <label>Cats: <input onChange={e => setCatName(e.target.value)}
+                                        value={catName} type="text"/></label>
+                    <button onClick={() => dispatch({type: 'cat', payload: catName})}>Send Cats</button>
+                </div>
 
             </div>
-            <div>{state.count1}</div>
-            <button onClick={() => dispatch({type: 'inc'})}>Increment</button>
-            <button onClick={() => dispatch({type: 'dec'})}>Decrement</button>
-            <button onClick={() => dispatch({type: 'reset'})}>RESET</button>
+            Cats:
+            {
+                state.cats.map(cat => <div>{cat}</div>)
+            }
+            {/*<div>{state.count1}</div>*/}
+            {/*<button onClick={() => dispatch({type: 'inc'})}>Increment</button>*/}
+            {/*<button onClick={() => dispatch({type: 'dec'})}>Decrement</button>*/}
+            {/*<button onClick={() => dispatch({type: 'reset'})}>RESET</button>*/}
         </div>
     );
 }
