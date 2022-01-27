@@ -8,9 +8,9 @@ export const Form = ({setCarArray}) => {
     const {register, handleSubmit} = useForm();
 
     const submitNewCar = (car) => {
-        setCarArray(car)
-        console.log(car)
-        carService.create(car).then(value => console.log(value)).catch(error => {
+        carService.create(car)
+            .then(() => setCarArray(car))
+            .catch(error => {
             setFormError(error.response.data)
         })
     }

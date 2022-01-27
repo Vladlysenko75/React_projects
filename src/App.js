@@ -12,7 +12,7 @@ function App() {
                 <Form setCarArray={setCarObject}/>
             </div>
             <div className="cars">
-                <Cars carArray={carObject}/>
+                <Cars setCarObject={setCarObject} carArray={carObject}/>
             </div>
         </div>
     );
