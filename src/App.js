@@ -1,7 +1,6 @@
-import './App.css';
 import {useReducer} from "react";
 
-
+import './App.css';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -26,7 +25,7 @@ function App() {
             <div className="inputs">
                 <form>
                     <label>Cats: <input type="text"/></label>
-                    <button onClick={() => dispatch({type: 'cat'}, 'sfgdfgdfg')}>Send Cats</button>
+                    <button onClick={() => dispatch({type: 'cat', payload: })}>Send Cats</button>
                     <label>Dogs: <input type="text"/></label>
                     <button>Send Dogs</button>
                 </form>
