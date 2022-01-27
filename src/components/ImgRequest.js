@@ -5,8 +5,9 @@ import {imgRequest} from "../services/imgService";
 export const ImgRequest = () => {
     const [imgStorage, setImgStorage] = useState('');
     console.log(imgStorage)
-    useEffect( () => {
-    },[])
+    useEffect(() => {
+        imgRequest.cat().then(cat => setImgStorage(cat)).catch(error => console.log(error))
+    }, [])
 
     return (
         <div>
