@@ -4,7 +4,13 @@ import {useReducer} from "react";
 const reducer = (state, action) => {
     switch (action.type) {
         case 'inc':
-            return
+            return {count1: state.count1 + 1}
+        case 'dec':
+            return {count1: state.count1 - 1}
+        case 'reset':
+            return {count1: 0}
+        default:
+            throw new Error('Error')
     }
     return state
 }
