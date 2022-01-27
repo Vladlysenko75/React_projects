@@ -1,0 +1,42 @@
+.episodes {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 926px;
+}
+
+.currentEpisode {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.episodesInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 100%;
+    background-color: aliceblue;
+}
+
+.episodesFlex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.episode h3 {
+    margin-block-start: 0;
+}
+
+.episode {
+    padding: 10px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 170px;
+    background-color: aliceblue;
+}

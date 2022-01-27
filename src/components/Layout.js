@@ -8,7 +8,7 @@ export const Layout = () => {
         <div>
             <div className='header'>
                 <div><Link to={'/'}>Rick and Morty!</Link></div>
-                <div><Link to={'/episodes/page/1'}>Go to first Page</Link></div>
+                <div><Link to={'/page/1'}>Go to first Page</Link></div>
             </div>
             <Outlet/>
         </div>
