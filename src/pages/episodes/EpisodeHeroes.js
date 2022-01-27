@@ -4,8 +4,7 @@ export const EpisodeHeroes = ({character}) => {
     const {image, name, status, species, gender, origin, location} = character;
 
     return (
-        <div>
-
+        <div className='character'>
             <div><img src={image} alt="Portrait"/></div>
             <div><h3>{name}</h3></div>
             <div>Status: {status}</div>

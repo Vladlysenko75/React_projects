@@ -1,24 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation} from "react-router-dom";
 import {EpisodeHeroes} from "./EpisodeHeroes";
+import {episodeService} from "../../services/episode.service";
 
 export const EpisodeInfo = () => {
     const {state} = useLocation()
     const [charactersInfo, setCharactersInfo] = useState([])
     const {name, episode, air_date} = state;
     console.log(state)
-    const characters = state.characters;
 
     let arr = []
+    const characters = state.characters;
     characters.map(one => arr.push(one.slice(42)))
     let charactersList = arr.join()
     console.log(charactersList)
 
     useEffect(() => {
-        fetch(`https://rickandmortyapi.com/api/character/${charactersList}`)
-            .then(value => value.json())
-            .then(character => setCharactersInfo(character))
-    }, [charactersList])
+        if (state) {
+            episodeService.episodeCharacters(charactersList).then(value => setCharactersInfo(value))
+            return
+        }
+        console.log('fff')
+    }, [charactersList, state])
+
+
     console.log('here', charactersInfo);
     return (
         <>
@@ -29,7 +34,10 @@ export const EpisodeInfo = () => {
                     <div>Air date: {air_date}</div>
                 </div>
             </div>
-            {charactersInfo.map(character => <EpisodeHeroes key={character.id} character={character}/>)}
+            <div className="characters">
+                {charactersInfo.map(character => <EpisodeHeroes key={character.id} character={character}/>)}
+            </div>
+
         </>
     );
 };

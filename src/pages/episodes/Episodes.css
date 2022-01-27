@@ -40,3 +40,13 @@
     height: 170px;
     background-color: aliceblue;
 }
+
+.characters {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.character {
+    margin-top: 10px;
+}
