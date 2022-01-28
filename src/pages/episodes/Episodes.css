@@ -4,6 +4,18 @@
     max-width: 926px;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo img{
+    width: 864px;
+    height: 778px;
+    margin-right: 43px;
+}
+
 .currentEpisode {
     display: flex;
     flex-direction: column;
@@ -49,4 +61,11 @@
 
 .character {
     margin-top: 10px;
+}
+
+.navigation {
+    margin-top: 10px;
+    margin-left: 4px;
+    display: flex;
+    gap: 8px;
 }

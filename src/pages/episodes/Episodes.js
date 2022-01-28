@@ -1,31 +1,34 @@
 import React, {useEffect, useState} from 'react';
-
-import {episodeService} from "../../services/episode.service";
 import {useParams, Link} from "react-router-dom";
 
+import {episodeService} from "../../services/episode.service";
 import {Episode} from "./Episode";
 import './Episodes.css'
 
 export const Episodes = () => {
     let {pageNumber} = useParams();
     const [episodes, setEpisodes] = useState([])
+    const [pages, setPages] = useState(1)
+
+    function episodesJSON(episode) {
+        setEpisodes(episode.results)
+        setPages(episode.info.pages)
+    }
 
     function getPage(current, i) {
         let next = +current + i;
-        if (next > 3) {
+        if (next > pages) {
             return 1
         }
         if (next < 1) {
-            return 3
+            return pages
         }
         return next
     }
 
     useEffect(() => {
-        episodeService.episodesPage(pageNumber).then(value => setEpisodes(value.results))
+        episodeService.episodesPage(pageNumber).then(value => episodesJSON(value))
     }, [pageNumber])
-
-    console.log(episodes)
 
     return (
         <div className={'episodesFlex'}>

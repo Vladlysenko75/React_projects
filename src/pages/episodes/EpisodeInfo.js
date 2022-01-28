@@ -34,7 +34,6 @@ export const EpisodeInfo = () => {
             <div className="characters">
                 {charactersInfo.map(character => <EpisodeHeroes key={character.id} character={character}/>)}
             </div>
-
         </>
     );
 };
