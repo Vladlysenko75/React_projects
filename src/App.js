@@ -1,17 +1,15 @@
 import {useReducer, useState} from "react";
 
 import './App.css';
+import {Cats} from "./components/Cats";
+import {Dogs} from "./components/Dogs";
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case 'inc':
-            return {count1: state.count1 + 1}
-        case 'dec':
-            return {count1: state.count1 - 1}
-        case 'reset':
-            return {count1: 0}
         case 'cat':
             return {...state, cats: [...state.cats, action.payload]}
+        case 'dog':
+            return {...state, dogs: [...state.dogs, action.payload]}
         default:
             throw new Error('Error')
     }
@@ -20,25 +18,30 @@ const reducer = (state, action) => {
 function App() {
     const [state, dispatch] = useReducer(reducer, {cats: [], dogs: []});
     const [catName, setCatName] = useState('');
+    const [dogName, setDogName] = useState('');
 
     return (
         <div className="App">
             <div className="inputs">
                 <div>
-                    <label>Cats: <input onChange={e => setCatName(e.target.value)}
-                                        value={catName} type="text"/></label>
+                    <label>Cats: <input onChange={e => setCatName(e.target.value)} type="text"/></label>
                     <button onClick={() => dispatch({type: 'cat', payload: catName})}>Send Cats</button>
                 </div>
-
+                <div>
+                    <label>Dogs: <input onChange={e => setDogName(e.target.value)} type="text"/></label>
+                    <button onClick={() => dispatch({type: 'dog', payload: dogName})}>Send Cats</button>
+                </div>
             </div>
-            Cats:
-            {
-                state.cats.map(cat => <div>{cat}</div>)
-            }
-            {/*<div>{state.count1}</div>*/}
-            {/*<button onClick={() => dispatch({type: 'inc'})}>Increment</button>*/}
-            {/*<button onClick={() => dispatch({type: 'dec'})}>Decrement</button>*/}
-            {/*<button onClick={() => dispatch({type: 'reset'})}>RESET</button>*/}
+            <div className="animals">
+                <div className='cats'>
+                    <h3>Cats List:</h3>
+                    {state.cats.map(cat => <Cats cat={cat}/>)}
+                </div>
+                <div className="dogs">
+                    <h3>Dogs List:</h3>
+                    {state.dogs.map(dog => <Dogs dog={dog}/>)}
+                </div>
+            </div>
         </div>
     );
 }
