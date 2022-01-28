@@ -1,17 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {imgRequest} from "../services/imgService";
 
+import {imgRequestService} from "../services/imgService";
 
 export const ImgRequest = () => {
     const [imgStorage, setImgStorage] = useState('');
 
-    useEffect(() => {
-        imgRequest.cat().then(cat => setImgStorage(cat)).catch(error => console.log(error))
-    }, [])
+    useEffect( () => {
+        imgRequestService.cat().then(cat => setImgStorage(cat.url))
+    },[])
 
     return (
         <div>
-        <img src={'https://loremflickr.com/320/240/cat'} alt=""/>
             <div className="categories">
                 <button>Cat</button>
                 <button>Car</button>
@@ -20,7 +19,7 @@ export const ImgRequest = () => {
                 <button>NoteBook</button>
             </div>
             <div className="image">
-                <img src="" alt=""/>
+                <img src={imgStorage} alt="animal"/>
                 <button>Update</button>
             </div>
         </div>
