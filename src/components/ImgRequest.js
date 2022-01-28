@@ -1,26 +1,33 @@
 import React, {useEffect, useState} from 'react';
 
-import {imgRequestService} from "../services/imgService";
-
 export const ImgRequest = () => {
     const [imgStorage, setImgStorage] = useState('');
+    const [number, setNumber] = useState(1)
+    const [category, setCategory] = useState('girl')
 
-    useEffect( () => {
-        imgRequestService.cat().then(cat => setImgStorage(cat.url))
-    },[])
+    const increment = (i) => {
+        let newNumber = i + 1
+        setNumber(newNumber)
+    }
+
+    useEffect(() => {
+        fetch(`https://loremflickr.com/600/400/${category}`)
+            .then(cat => setImgStorage(cat.url))
+    }, [number, category])
 
     return (
-        <div>
+        <div className='main'>
             <div className="categories">
-                <button>Cat</button>
-                <button>Car</button>
-                <button>Dog</button>
-                <button>Girl</button>
-                <button>NoteBook</button>
+                <h1>Categories:</h1>
+                <button onClick={() => setCategory('cat')}>Cat</button>
+                <button onClick={() => setCategory('car')}>Car</button>
+                <button onClick={() => setCategory('dog')}>Dog</button>
+                <button onClick={() => setCategory('girl')}>Girl</button>
+                <button onClick={() => setCategory('notebook')}>NoteBook</button>
             </div>
             <div className="image">
                 <img src={imgStorage} alt="animal"/>
-                <button>Update</button>
+                <button onClick={() => increment(number)}>Update</button>
             </div>
         </div>
     );
