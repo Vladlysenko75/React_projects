@@ -29,7 +29,7 @@ export const deleteCarBtn = createAsyncThunk(
     async (id, {dispatch}) => {
         try {
             await carService.deleteCarById(id)
-            dispatch(deleteCar(id))
+            dispatch(deleteCar({id}))
         } catch (e) {
 
         }
@@ -48,7 +48,7 @@ const carSlice = createSlice({
             state.cars.push(action.payload.data)
         },
         deleteCar: (state, action) => {
-            state.cars = state.cars.filter(car => car.id !== action.payload)
+            state.cars = state.cars.filter(car => car.id !== action.payload.id)
         }
     },
     extraReducers: {
