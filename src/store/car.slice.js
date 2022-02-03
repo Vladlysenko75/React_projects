@@ -1,6 +1,20 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import {carService} from "../services";
 
+export const getAllCars = createAsyncThunk(
+    'carSlice/getAllCars',
+    async (_, {rejectWithValue}) => {
+        try {
+            return await carService.getAll();
+        } catch (e) {
+            return rejectWithValue(e.message)
+        }
+    }
+)
 
+export const createCar = createAsyncThunk(
+    'carSlice/createCar'
+)
 
 const carSlice = createSlice({
     name: 'carSlice',
@@ -9,14 +23,19 @@ const carSlice = createSlice({
         status: null,
         error: null
     },
-    reducers: {
-        addCar: (state, action) => {
-            state.cars.push({
-                id: new Date().getTime(),
-                ...action.payload.data
-            })
+    reducers: {},
+    extraReducers: {
+        [getAllCars.pending]: (state, action) => {
+            state.status = 'pending...';
+            state.error = null;
         },
-        deleteCar: () => {
+        [getAllCars.fulfilled]: (state, action) => {
+            state.status = 'fulfilled';
+            state.cars = action.payload;
+        },
+        [getAllCars.rejected]: (state, action) => {
+            state.status = 'error';
+            state.error = action.payload;
         }
     }
 })
