@@ -36,6 +36,18 @@ export const deleteCarBtn = createAsyncThunk(
     }
 )
 
+export const updateCar = createAsyncThunk(
+    'carSlice/updateCar',
+    async (car) => {
+        try {
+            console.log(car)
+            await carService.updateCar(car)
+        } catch (e) {
+
+        }
+    }
+)
+
 const carSlice = createSlice({
     name: 'carSlice',
     initialState: {
