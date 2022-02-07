@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
 
-import {deleteCarBtn} from "../store";
+import {deleteCarBtn} from "../../store";
 
 export const Car = ({car}) => {
     const {id, year, model, price} = car;

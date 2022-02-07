@@ -3,21 +3,15 @@ import {useForm} from 'react-hook-form'
 import {useDispatch} from "react-redux";
 import {joiResolver} from "@hookform/resolvers/joi";
 
-import {createCar, updateCar} from "../store";
-import {carValidator} from "../validators/car.validator";
+import {updateCar} from "../../store";
+import {updateValidator} from "../../validators/update.validator";
 
-export const Form = () => {
+export const UpdateCarForm = () => {
     const {handleSubmit, register, reset, formState: {errors}} = useForm({
-        resolver: joiResolver(carValidator),
+        resolver: joiResolver(updateValidator),
         mode: 'onTouched'
     });
     const dispatch = useDispatch();
-
-    const submit = (data) => {
-        console.log(data)
-        dispatch(createCar(data))
-        reset()
-    }
 
     const update = (data) => {
         dispatch(updateCar(data))
@@ -26,7 +20,7 @@ export const Form = () => {
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit(update)}>
                 <div className={'input'}>
                     <div className={'label'}>Model:</div>
                     <div><input type="text" {...register('model')}/></div>
@@ -37,14 +31,20 @@ export const Form = () => {
                     <div><input type="text" {...register('price')}/></div>
                     <div>{errors.price && <span>{errors.price.message}</span>}</div>
                 </div>
-                <label>Year: <input type="text" {...register('year')}/></label>
-                {errors.year && <span>{errors.year.message}</span>}
-                <label>ID: <input type="number" {...register('id')}/></label>
-                {errors.id && <span>{errors.id.message}</span>}
-                <button onClick={handleSubmit(submit)}>Save</button>
-                <button onClick={handleSubmit(update)}>Update</button>
+                <div className="input">
+                    <div className="label">Year: </div>
+                    <div><input type="text" {...register('year')}/></div>
+                    <div>{errors.year && <span>{errors.year.message}</span>}</div>
+                </div>
+                <div className="input">
+                    <div className="label">ID: </div>
+                    <div><input type="number" {...register('id')}/></div>
+                    <div>{errors.id && <span>{errors.id.message}</span>}</div>
+                </div>
+                <button>Update</button>
                 <hr/>
             </form>
         </div>
     );
 };
+

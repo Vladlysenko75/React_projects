@@ -1,41 +1,41 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {usersService} from "../services";
 
-export const getAllUsers = createAsyncThunk(
-    'userSlice/getAllUsers',
+export const getAllComments = createAsyncThunk(
+    'commentSlice/getAllComments',
     async (_, {rejectWithValue}) => {
         try {
-            return await usersService.getUsers();
+            return await usersService.getComments();
         } catch (e) {
             return rejectWithValue(e.message)
         }
     }
 )
 
-const userSlice = createSlice({
-    name: 'userSlice',
+const commentSlice = createSlice({
+    name: 'commentSlice',
     initialState: {
-        users: [],
+        comments: [],
         status: null,
         error: null
     },
     reducers: {},
     extraReducers: {
-        [getAllUsers.pending]: (state) => {
+        [getAllComments.pending]: (state) => {
             state.status = 'pending...';
             state.error = null;
         },
-        [getAllUsers.fulfilled]: (state, action) => {
+        [getAllComments.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
-            state.users = action.payload;
+            state.comments = action.payload;
         },
-        [getAllUsers.rejected]: (state, action) => {
+        [getAllComments.rejected]: (state, action) => {
             state.status = 'error';
             state.error = action.payload;
         }
     }
 })
 
-const userReducer = userSlice.reducer;
+const postReducer = commentSlice.reducer;
 
-export default userReducer;
+export default postReducer;

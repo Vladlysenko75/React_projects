@@ -1,0 +1,8 @@
+.label {
+    width: 50px;
+}
+
+.input {
+    display: flex;
+    gap: 5px;
+}

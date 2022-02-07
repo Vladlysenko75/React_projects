@@ -1,41 +1,41 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {usersService} from "../services";
 
-export const getAllUsers = createAsyncThunk(
-    'userSlice/getAllUsers',
+export const getAllPosts = createAsyncThunk(
+    'userSlice/getAllPosts',
     async (_, {rejectWithValue}) => {
         try {
-            return await usersService.getUsers();
+            return await usersService.getPosts();
         } catch (e) {
             return rejectWithValue(e.message)
         }
     }
 )
 
-const userSlice = createSlice({
-    name: 'userSlice',
+const postSlice = createSlice({
+    name: 'postSlice',
     initialState: {
-        users: [],
+        posts: [],
         status: null,
         error: null
     },
     reducers: {},
     extraReducers: {
-        [getAllUsers.pending]: (state) => {
+        [getAllPosts.pending]: (state) => {
             state.status = 'pending...';
             state.error = null;
         },
-        [getAllUsers.fulfilled]: (state, action) => {
+        [getAllPosts.fulfilled]: (state, action) => {
             state.status = 'fulfilled';
-            state.users = action.payload;
+            state.posts = action.payload;
         },
-        [getAllUsers.rejected]: (state, action) => {
+        [getAllPosts.rejected]: (state, action) => {
             state.status = 'error';
             state.error = action.payload;
         }
     }
 })
 
-const userReducer = userSlice.reducer;
+const postReducer = postSlice.reducer;
 
-export default userReducer;
+export default postReducer;
