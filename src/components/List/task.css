@@ -1,0 +1,9 @@
+.task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.change {
+    text-decoration: line-through;
+}

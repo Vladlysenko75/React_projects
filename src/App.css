@@ -1,0 +1,16 @@
+.form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 100vh;
+    background-image: radial-gradient(circle, #5c0067 0%, #00d4ff 100%);
+}
