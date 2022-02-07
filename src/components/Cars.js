@@ -14,6 +14,10 @@ export const Cars = () => {
 
     return (
         <div>
+            <div className="navigation">
+
+            </div>
+
             {status === 'pending...' && <h1>Loading...</h1>}
             {error && <h1>{error}</h1> }
             {cars && cars.map(car => <Car key={car.id} car={car}/>)}
