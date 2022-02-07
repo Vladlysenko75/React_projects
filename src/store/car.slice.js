@@ -1,4 +1,5 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+
 import {carService} from "../services";
 
 export const getAllCars = createAsyncThunk(
@@ -84,6 +85,7 @@ const carSlice = createSlice({
         }
     }
 })
+
 const carReducer = carSlice.reducer;
 export const {addCar, deleteCar, update} = carSlice.actions;
 

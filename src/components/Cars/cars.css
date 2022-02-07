@@ -6,3 +6,18 @@
     display: flex;
     gap: 5px;
 }
+
+.carNavigation {
+    background-color: #a39dee;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.form  {
+    background-color: #a39dee;
+    display: flex;
+    justify-content: center;
+}

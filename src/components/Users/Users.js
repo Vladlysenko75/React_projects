@@ -12,8 +12,6 @@ export const Users = () => {
         dispatch(getAllUsers())
     }, [dispatch])
 
-    console.log(users);
-
     return (
         <div>
             <h1>Users: </h1>

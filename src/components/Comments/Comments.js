@@ -12,8 +12,6 @@ export const Comments = () => {
         dispatch(getAllComments())
     },[dispatch])
 
-    console.log(comments)
-
     return (
         <div>
             <h1>Comments: </h1>

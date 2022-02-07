@@ -20,7 +20,7 @@ export const Form = () => {
     }
 
     return (
-        <div>
+        <div className={'form'}>
             <form onSubmit={handleSubmit(submit)}>
                 <div className={'input'}>
                     <div className={'label'}>Model:</div>
@@ -33,12 +33,11 @@ export const Form = () => {
                     <div>{errors.price && <span>{errors.price.message}</span>}</div>
                 </div>
                 <div className="input">
-                    <div className="label">Year: </div>
+                    <div className="label">Year:</div>
                     <div><input type="text" {...register('year')}/></div>
                     <div>{errors.year && <span>{errors.year.message}</span>}</div>
                 </div>
                 <button>Save</button>
-                <hr/>
             </form>
         </div>
     );

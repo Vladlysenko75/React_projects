@@ -19,7 +19,7 @@ export const UpdateCarForm = () => {
     }
 
     return (
-        <div>
+        <div className={'form'}>
             <form onSubmit={handleSubmit(update)}>
                 <div className={'input'}>
                     <div className={'label'}>Model:</div>
@@ -42,7 +42,6 @@ export const UpdateCarForm = () => {
                     <div>{errors.id && <span>{errors.id.message}</span>}</div>
                 </div>
                 <button>Update</button>
-                <hr/>
             </form>
         </div>
     );

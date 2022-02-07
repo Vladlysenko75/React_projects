@@ -14,8 +14,6 @@ export const Cars = () => {
         dispatch(getAllCars())
     }, [dispatch])
 
-    console.log(cars)
-
     return (
         <div>
             <div className="carNavigation">
@@ -23,7 +21,9 @@ export const Cars = () => {
                 <NavLink to={'update'}>Update car</NavLink>
             </div>
             <Outlet/>
-            <h1>Cars: </h1>
+            <div className="title">
+                <h1>Cars: </h1>
+            </div>
             <div className="cars">
                 {status === 'pending...' && <h1>Loading...</h1>}
                 {error && <h1>{error}</h1>}

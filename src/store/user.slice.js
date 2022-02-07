@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+
 import {usersService} from "../services";
 
 export const getAllUsers = createAsyncThunk(
